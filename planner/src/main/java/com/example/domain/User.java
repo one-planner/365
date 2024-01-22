@@ -22,10 +22,11 @@ public class User {
     @Column(name = "user_name", nullable = false, length = 50)
     private String userName;
 
+    @Column(name = "email", nullable = false, length = 100)
+    private String email;
+
     @Column(name = "password_hash", nullable = false, length = 64)
     private String passwordHash;
 
-    @Column(name = "phone_number", nullable = false, length = 100)
-    private String phoneNumber;
 
 }

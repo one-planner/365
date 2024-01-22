@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping("/sign")
     public String sign() {
-        return "signup";
+        return "/member/signup";
     }
 
     @PostMapping("/signup")
