@@ -1,10 +1,10 @@
-package com.study;
+package com.planner;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringHomepageApplicationTests {
+class B_plannerApplicationTests {
 
 	@Test
 	void contextLoads() {
