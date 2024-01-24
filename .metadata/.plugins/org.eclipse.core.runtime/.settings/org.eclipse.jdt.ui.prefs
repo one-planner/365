@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.study.domain.Reply"><rhs name\="com.study.domain.Reply"/></lhs></history>
+=======
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"/>
+>>>>>>> 384434e70d95b9204e541352b7f32c0384eac40d
 content_assist_number_of_computers=15
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
 eclipse.preferences.version=1
 org.eclipse.jdt.ui.formatterprofiles.version=23
+<<<<<<< HEAD
 spelling_ignore_ampersand_in_properties=true
 spelling_ignore_digits=true
 spelling_ignore_java_strings=true
@@ -15,6 +20,9 @@ spelling_ignore_upper=true
 spelling_ignore_urls=true
 spelling_locale_initialized=true
 spelling_user_dictionary_encoding=
+=======
+spelling_locale_initialized=true
+>>>>>>> 384434e70d95b9204e541352b7f32c0384eac40d
 typefilter_migrated_2=true
 useAnnotationsPrefPage=true
 useQuickDiffPrefPage=true

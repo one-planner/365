@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 GitRepositoriesView.GitDirectories=C\:\\Users\\pnu\\Documents\\work\\oPlanner\\365\\.git;
 GitRepositoriesView.GitDirectories.relative=365\\.git;
+=======
+GitRepositoriesView.GitDirectories=C\:\\Users\\ekrxj\\Documents\\cjh\\workspace\\sub_planner\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;
+>>>>>>> 384434e70d95b9204e541352b7f32c0384eac40d
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

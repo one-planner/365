@@ -1,0 +1,49 @@
+package com.planner.domain;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import io.micrometer.common.lang.NonNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import lombok.Data;
+
+
+@Data
+@Entity
+public class Planner {
+	@Id
+	@SequenceGenerator (
+			name = "myPlannerSEQ",
+			sequenceName = "Planner_SEQ",
+			allocationSize = 1
+		)
+		@GeneratedValue(generator = "myPlannerSEQ")
+	private Long pNo; // 할 일 번호
+	@NonNull
+	private String title; // 제목
+	private String content; // 내용
+	private String place; // 위치
+	private LocalDateTime startDate; // 시작일
+	private LocalDateTime finishDate; // 종료일
+	private LocalDateTime startTime; // 시작시간
+	private LocalDateTime finishTime; // 종료시간
+	
+	@Column(insertable = false, columnDefinition = "NUMBER DEFAULT 0")
+	private int repeat; // 반복 여부   // 0 = 반복 off
+									// 1 = 매일
+									// 2 = 매주 월요일
+									// 3 = 평일만
+									// 4 = 주말 및 공휴일
+									// 
+	private int invite; // 사용자 추가
+	@Column(insertable = false, columnDefinition = "NUMBER DEFAULT 1")
+	private int alarm; // 알람 여부 // 0 =알람 off
+								 // 1 =알람 on
+	
+	
+	
+}
