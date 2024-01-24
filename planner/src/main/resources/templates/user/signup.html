@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+    <h1 align="center">회원가입</h1>
+    <br>
+    <div th:if="${loginUser == null}" class="login-area" align="center">
+        <form action="signup" method="post">
+            <table>
+                <tr>
+                    <td>이름</td>
+                    <td><input name="email" required></td>
+                </tr>
+                <tr>
+                    <td>e-mail</td>
+                    <td><input name="email" required></td>
+                    <td rowspan="1"><button style="height: 25px;">인증</button></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" name="password" required></td>
+                </tr>
+                <tr>
+                   <td>생년월일</td>
+                   <td><input name="birthday" placeholder="ex. 001024"></td>
+                </tr>
+                <tr>
+                    <td>성별</td>
+                    <td>
+                        남<input type="radio" id="man">
+                        여<input type="radio" id="woman">
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>사용목적</td>
+                    <td>
+                    <select value="work">
+                        <option>개인용</option>
+                        <option>학업용</option>
+                        <option>기업용</option>
+                    </select> 
+                    </td>
+                 </tr>
+            </table>
+        </form>
+    </div>
+
+
+</body>
+</html>

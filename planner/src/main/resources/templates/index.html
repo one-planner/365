@@ -1,15 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-<script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
-
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- For CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-<h1>환영합니다!</h1>
-    이름<input type = "text">
-    비밀번호<input type = "password">
-    <a href = "sign">회원가입</a>
+
+<div class="entire" >
+    <div th:if="${loginUser == null}" class="login-area" align="left">
+        <h1 align="left">환영합니다</h1>
+        <form action="login" method="post">
+            <table>
+                <tr>
+                    <th scope="row">
+                        <label for="email">Email</label>
+                    </th>
+                    <td>
+                        <input type="text" name="email" id="email">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label for="password">Password</label>
+                    </th>
+                    <td>
+                        <input type="password" name="password" id="password">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+<!--                        <button width="">로그인</button>-->
+                        <button type="submit" class="relative w-full px-4 py-2 h-[48px] text-white bg-lightScheme-primary rounded-md">로그인</button>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="3" align="center">
+                     아직도 회원이 아니세요? <a href="sign">지금 바로 시작하세요!</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <!--            <img th:src="@{/img/month.png}" alt="Month Image">-->
+            <!--            <img th:src="@{/img/week.png}" alt="Week Image">-->
+            <!--            <img th:src="@{/img/day.png}" alt="Day Image">-->
+            <div class="swiper-slide">
+                <img src="img/month.png">
+            </div>
+            <div class="swiper-slide">
+                <img src="img/week.png">
+            </div>
+            <div class="swiper-slide">
+                <img src="img/day.png">
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- For JavaScript 자바스크립트 div 마치고 적용됨-->
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>
