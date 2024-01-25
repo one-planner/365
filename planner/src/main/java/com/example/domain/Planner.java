@@ -14,8 +14,8 @@ public class Planner {
     private Long plannerId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @Lob
     private String content;
