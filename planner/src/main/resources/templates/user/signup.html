@@ -8,12 +8,12 @@
 <h1 align="center">회원가입</h1>
 <br>
 <div class="signup-area" align="center">
-    <form method="post" th:action="@{/api/member}" th:object="${member}">
+    <form method="post" th:action="@{/api/user}" th:object="${user}">
 <!--    <form action="/api/create" method="post" th:action="@{/api/create}">-->
         <table>
             <tr>
                 <td>이름</td>
-                <td><input type="text" th:field="*{membername}" required></td>
+                <td><input type="text" th:field="*{username}" required></td>
             </tr>
             <tr>
                 <td>e-mail</td>

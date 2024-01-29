@@ -19,16 +19,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "MEMBER")
-public class Member {
+@Table(name = "USERS")
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_id_seq")
-    @SequenceGenerator(name = "member_id_seq", sequenceName = "member_id_seq", allocationSize = 1)
-    private Long memberId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
+    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
+    private Long userId;
 
-    @Column(name = "member_name", nullable = false, length = 50)
-    private String membername;
+    @Column(name = "user_name", nullable = false, length = 50)
+    private String username;
 
     @Column(name = "email", nullable = false, length = 100)
     private String email;
