@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src='webjars/fullcalendar/6.1.9/index.global.min.js'></script>
+  <link rel="stylesheet" href="/webjars/flatpickr/4.6.13/dist/flatpickr.min.css">
+  <script src="/webjars/flatpickr/4.6.13/dist/flatpickr.min.js"></script>
+  <!-- 일본어 locale 추가 -->
+  <script src="/webjars/flatpickr/4.6.13/dist/l10n/ja.js"></script>
+  <link href="/css/calendarMini.css" rel="stylesheet">
+  <style>
+    /* 스타일 추가 */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex; /* 부모 요소를 플렉스 컨테이너로 설정 */
+    }
+
+    .calendar {
+      flex: 1; /* 동일한 너비를 가진 플렉스 아이템으로 설정 */
+      margin: 10px; /* 각 캘린더 사이의 여백 조절 */
+    }
+
+    #main-calendar {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    #eventForm {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 미니 달력 컨테이너 -->
+<div class="calendar">
+  <span id="mini-calendar"></span>
+</div>
+
+<!-- 메인 달력 컨테이너 -->
+<div class="calendar">
+  <span id="main-calendar"></span>
+</div>
+
+<script>
+  // 미니 달력 설정
+  var miniCalendar = flatpickr("#mini-calendar", {
+    inline: true,
+    shorthandCurrentMonth: true,
+    static: true,
+    locale: "ja", // 일본어로 설정
+    onChange: function (selectedDates, dateStr, instance) {
+      // 메인 달력 갱신
+      updateMainCalendar(selectedDates[0]);
+    }
+  });
+
+  // 메인 달력 설정
+  var mainCalendar = new FullCalendar.Calendar(document.getElementById('main-calendar'), {
+    initialView: 'dayGridMonth',
+    initialDate: new Date(),
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'timeGridDay,timeGridWeek'
+    },
+    locale: 'ja', // 일본어로 설정
+    dateClick: function (info) {
+      // 날짜를 클릭하면 미니 달력 선택 날짜 갱신
+      miniCalendar.setDate(info.date);
+    }
+  });
+
+  // 메인 달력 렌더링
+  mainCalendar.render();
+
+  // 메인 달력 갱신 함수
+  function updateMainCalendar(date) {
+    mainCalendar.gotoDate(date);
+    mainCalendar.changeView('timeGridDay');
+  }
+</script>
+
+</body>
+
+</html>
