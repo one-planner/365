@@ -24,4 +24,9 @@ public class HomeController {
 		return "calendar/mCalendar";
 	}
 	
+	@GetMapping("detailForm")
+	public String detailForm() {
+		return "calendar/detailForm";
+	}
+	
 }

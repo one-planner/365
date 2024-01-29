@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-<<<<<<< HEAD
-		<item key="selection" value="Week"/>
-=======
-		<item key="selection" value="nextYear"/>
->>>>>>> 384434e70d95b9204e541352b7f32c0384eac40d
+		<item key="selection" value="moment"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-<<<<<<< HEAD
-			<item value="week"/>
-			<item value="initialView"/>
-			<item value="title"/>
-			<item value="Birthday Party"/>
-=======
-			<item value="nextYear"/>
-			<item value="button"/>
-			<item value="week"/>
->>>>>>> 384434e70d95b9204e541352b7f32c0384eac40d
+			<item value="moment"/>
+			<item value="momet"/>
+			<item value="momen"/>
+			<item value="info"/>
+			<item value="vent-name"/>
+			<item value="selectedStartDate"/>
+			<item value="drop"/>
+			<item value="ready"/>
+			<item value="modal(&apos;show&apos;)"/>
+			<item value="\"/>
+			<item value="save-time"/>
+			<item value="Invalid start or end time"/>
+			<item value="Event name and both start/end times are required"/>
+			<item value="btn btn-primary"/>
+			<item value="server/endpoint"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-<<<<<<< HEAD
-		<item key="DIALOG_X_ORIGIN" value="1560"/>
-		<item key="DIALOG_Y_ORIGIN" value="234"/>
-=======
-		<item key="DIALOG_X_ORIGIN" value="1475"/>
-		<item key="DIALOG_Y_ORIGIN" value="374"/>
->>>>>>> 384434e70d95b9204e541352b7f32c0384eac40d
+		<item key="DIALOG_X_ORIGIN" value="1385"/>
+		<item key="DIALOG_Y_ORIGIN" value="344"/>
 		<item key="DIALOG_WIDTH" value="369"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

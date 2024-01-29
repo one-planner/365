@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="UTF-8">
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+  <title>Insert title here</title>
+  
+
+
+</head>
+<body>
+<div style="margin-top:50px;">
+	<input type="text" id="endDate" placeholder="종료 날짜" style="display: none;">
+</div>
+<script>
+	const endDateInput = document.getElementById('endDate');
+	
+	function handleDateChange(selectedDates, dateStr, instance) {
+		console.log('선택된 날짜:', dateStr);
+	}
+
+	flatpickr(endDateInput, {
+		inline: true,
+		dateFormat: 'Y-m-d',
+		enableTime: false,
+		minDate: 'today',
+		defaultDate: 'today',
+		locale: 'ko',
+		onChange: handleDateChange, // 날짜 선택 이벤트 핸들러 등록
+	}).open();
+</script>
+</body>
+</html>
