@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.domain.User;
 import com.example.dto.LoginDto;
 import com.example.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +26,12 @@ public class UserApiController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@ModelAttribute LoginDto loginDto) {
-        System.out.println("login 처리하자");
+    public ResponseEntity<?> login(@RequestBody LoginDto loginDto, HttpSession session) {
         boolean isAuthenticated = userService.authenticate(loginDto);
-        return isAuthenticated ? ResponseEntity.ok().build() : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        if (isAuthenticated) {
+            session.setAttribute("loginUser", loginDto.getEmail());
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 }

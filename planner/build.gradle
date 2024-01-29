@@ -48,6 +48,17 @@ dependencies {
 	// jQuery 사용
 	implementation 'org.webjars:jquery:3.7.1'
 
+	// jQuery UI
+	implementation 'org.webjars:jquery-ui:1.13.1'
+
+	// fullcalendar
+	implementation 'org.webjars:fullcalendar:6.1.9'
+	// flatpickr
+	implementation 'org.webjars.npm:flatpickr:4.6.13'
+	// Datetimepicker
+	implementation 'org.webjars:datetimepicker:2.5.20-1'
+
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 //	// Spring Security

@@ -50,6 +50,17 @@
             </tr>
         </table>
     </form>
+
+    <script>
+        // 회원가입 요청
+        axios.post('/signup', userData)
+            .then(response => {
+                if (response.data.success) {
+                    window.location.href = '/login'; // 로그인 페이지로 리다이렉트
+                }
+            });
+
+    </script>
 </div>
 </body>
 </html>
