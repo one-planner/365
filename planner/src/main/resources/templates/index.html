@@ -10,13 +10,26 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
+<!--    <div id="loginForm">-->
+<!--        <li>-->
+<!--            <label for="email">Email</label>-->
+<!--            <input type="text" name="email" id="email">    -->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <label for="password">Password</label>-->
+<!--            <input type="password" name="password" id="password">-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <button type="submit">로그인</button>-->
+<!--        </li>-->
+<!--        아직도 회원이 아니세요? <a href="/web/signup">지금 바로 시작하세요!</a>-->
+<!--    </div>-->
 
 <div class="entire" >
-<!--    <div th:if="${loginUser == null}" class="login-area" align="left">-->
-    <div id="loginForm" class="login-area" align="left">
+    <div id="loginForm">
+
         <h1 align="left">환영합니다</h1>
         <form>
-<!--        <form action="/api/user/login" method="post">-->
             <table>
                 <tr>
                     <th scope="row">
@@ -37,8 +50,7 @@
 
                 <tr>
                     <td>
-<!--                        <button width="">로그인</button>-->
-                        <button type="submit" class="relative w-full px-4 py-2 h-[48px] text-white bg-lightScheme-primary rounded-md">로그인</button>
+                         <button type="submit">로그인</button>
                     </td>
                 </tr>
                 

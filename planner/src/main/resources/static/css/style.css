@@ -1,13 +1,7 @@
 .entire {
-    position: relative;
     display: flex;
-    /*background-color: red;*/
 }
-.login-area {
-    position: relative;
-    top:50px;
-    /*background-color: black;*/
-}
+
 .swiper {
     width: 50%;
     height: 100%;

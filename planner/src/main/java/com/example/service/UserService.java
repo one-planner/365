@@ -31,16 +31,12 @@ public class UserService {
     }
 
     public boolean authenticate(LoginDto loginDto) {
-//        loginDto.setPassword(pEncoder.encode(loginDto.getPassword()));
         Optional<User> user = UserRepository.findByEmail(loginDto.getEmail());
         if (user.isPresent()) {
             if (pEncoder.matches(loginDto.getPassword(), user.get().getPasswordHash())) {
-//            if (User.get().getPasswordHash().matches(loginDto.getPassword())) {
-                System.out.println("로그인 성공!");
                 return true;
             }
         }
-        System.out.println("로그인 실패!");
         return false;
     }
 }
