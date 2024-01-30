@@ -43,7 +43,7 @@ public class PlannerController {
 		planner.setStartDate(startDate);
 		planner.setEndDate(endDate);
 		planner.setStartTime(startTime);
-		planner.setEndTime(place);
+		planner.setEndTime(endTime);
 		planner.setContent(content);
 		planner.setPlace(place);
 		
