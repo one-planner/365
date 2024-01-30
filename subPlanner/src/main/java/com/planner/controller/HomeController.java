@@ -24,9 +24,15 @@ public class HomeController {
 		return "calendar/mCalendar";
 	}
 	
-	@GetMapping("detailForm")
-	public String detailForm() {
-		return "calendar/detailForm";
+	//테스트폼
+	@GetMapping("testCalendarForm")
+	public String testCalendarForm() {
+		return "calendar/testCalendar";
+	}
+	//재호최폼
+	@GetMapping("choiForm")
+	public String choiForm() {
+		return "calendar/testCalendarBackup8ChoiForm";
 	}
 	
 }

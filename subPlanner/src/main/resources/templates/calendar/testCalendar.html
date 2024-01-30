@@ -12,13 +12,19 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+  
+  <!-- jQuery UI JS -->
+	<script src="/webjars/jquery-ui/1.13.1/jquery-ui.js"></script>
+	<!-- Datetimepicker CSS -->
+	<link rel="stylesheet" href="/webjars/datetimepicker/2.5.20-1/jquery.datetimepicker.css">
+	<!-- Datetimepicker JS -->
+	<script src="/webjars/datetimepicker/2.5.20-1/jquery.datetimepicker.js"></script>
 
   <title>Insert title here</title>
 
@@ -56,26 +62,25 @@
 	<!--flatpickr-->
   	<div class="flexContainer">
 	    <div id="flatpickr-container" class="calendarFlat">
+	        <button id="todayButton" class="btn btn-dark">Today</button>
 	        <input type="text" id="dateInput" placeholder="종료 날짜" style="display: none;">
 	    </div>
 	<div id='calendar'></div>
   
 
 <!--fullcalendar-->
-  <form id="eventForm" class="calendarFull">
-   
-   
-   
+  <form id="" class="calendarFull">
+
   </form>
   
   
   <!--detail-->
       <div align="center" id="calendarDetail">
-        <form action="">
+        <form action="" id="eventForm">
             <table>
                 <tr>
                     <td colspan="2">
-                        <input type="text" class="form-control" placeholder="제목 및 시간 추가" onfocus="this.placeholder=''" onblur="this.placeholder='제목 및 시간 추가'" size="27px">
+                        <input type="text" id="title" class="form-control" placeholder="제목 및 시간 추가" onfocus="this.placeholder=''" onblur="this.placeholder='제목 및 시간 추가'" size="27px">
                     </td>
                 </tr>
 <!--                <tr>-->
@@ -86,16 +91,24 @@
 <!--                </tr>-->
                 <tr>
 					<td>
-						시작일 : <input type="text" class="form-control" id="startDate" placeholder="시작 날짜"><br>
-						종료일 : <input type="text" class="form-control" id="endDate" placeholder="종료 날짜">
+						시작일 : <input type="text" id="startDate" class="form-control">
+						종료일 : <input type="text" id="endDate" class="form-control">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						시작시간 : <input type="time" id="startTime" class="form-control">
+						종료시간 : <input type="time" id="endTime" class="form-control">
 					</td>
 				</tr>
                 <tr>
-                    <td>날짜</td>
+					<td>
+	                    장소 : <input id="place" name="place" class="form-control">
+					</td>
                 </tr>
                 <tr>
                     <td>
-                        <select class="form-select" aria-label="Default select example">
+                        <select id="repeat" class="form-select" aria-label="Default select example">
                             <option value="1">반복안함</option>
                             <option value="2">매일</option>
                             <option value="3">매주</option>
@@ -106,7 +119,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <textarea name="" class="form-control" placeholder="설명 추가" onfocus="this.placeholder=''" onblur="this.placeholder='설명 추가'" cols="30" rows="10"></textarea>
+                        <textarea id="content" class="form-control" placeholder="설명 추가" onfocus="this.placeholder=''" onblur="this.placeholder='설명 추가'" cols="30" rows="10"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -118,7 +131,7 @@
                 </tr>
                 <tr>
 					<td colspan="2" align="right">
-						<button class="btn btn-primary">저장</button>
+						<button onclick="insertPlan()" class="btn btn-primary">저장</button>
 					</td>
 				</tr>
             </table>
@@ -136,53 +149,49 @@
         initialView: 'dayGridMonth', // 처음 실행시 월별달력으로 실행
         fixedWeekCount: false, // 달력 마지막주 까지만 출력되게
         editable: true,
-
+        
         headerToolbar: {
-          left: 'prev,next today',
+          left: 'prevYear,prev,next,nextYear today',
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
 
-
         selectable: true,
+
 
         dateClick: function (info) {
           // info 객체에 선택된 날짜의 정보가 담겨 있음
           console.log(info);
-
-          // Bootstrap Modal을 띄워 시작 및 종료 시간, 이벤트 이름, 반복 옵션 등을 선택할 수 있는 UI를 보여줌
-          $('#timeSelectionModal').modal('show');
         }
       });
-
+      
       calendar.render();
+      
 
-      // "Save" 버튼 클릭 시
+      // 일정추가 
       $('#eventForm').submit(function (e) {
         e.preventDefault();
-        var eventName = $('#event-name').val();
-        var startTime = $('#start-time').val();
-        var endTime = $('#end-time').val();
-        var eventMemo = $('#event-memo').val();
-        var repeatOption = $('#repeat-option').val();
+        
+        var title = $('#title').val();
+        var startDate = $('#startDate').val();
+        var endDate = $('#endDate').val();
+        var startTime = $('#startTime').val();
+        var endTime = $('#endTime').val();
+        var content = $('#content').val();
+        var repeatOption = $('#repeat').val();
 
-        console.log(eventName);
+        console.log(title);
+        console.log(startDate);
+        console.log(endDate);
         console.log(startTime);
         console.log(endTime);
 
-        if (eventName) {
+        if (title) {
           calendar.addEvent({
-            title: eventName,
-            start: moment(startTime, 'HH:mm'),
-            end: moment(endTime, 'HH:mm'),
-            extendedProps: {
-              memo: eventMemo,
-              repeatOption: repeatOption
-            }
+            title: title,
+            start: startDate,
+            end: endDate,
           });
-
-          //calendar.unselect(); // 선택 해제
-          $('#timeSelectionModal').modal('hide');
         }
       });
 
@@ -197,6 +206,21 @@
         // 선택된 날짜를 fullcalendar에 전달
         calendar.gotoDate(moment(dateStr).format('YYYY-MM-DD'));
       }
+      
+      
+      // todayButton 버튼 클릭 시 Flatpickr 날짜 갱신(좌상단 flatpickr 버튼)
+	  document.getElementById('todayButton').addEventListener('click', function () {
+	    const today = new Date();
+	    dateInput._flatpickr.setDate(today, true); // 미니달력 갱신
+	    startDateInput._flatpickr.setDate(today, true); // 시작일 갱신
+	    endDateInput._flatpickr.setDate(today, true); // 종료일 갱신
+	
+	    // FullCalendar에서 오늘 날짜로 이동
+	    calendar.gotoDate(today);
+	  });
+	  
+	  // FullCalendar 렌더링
+    	calendar.render();
 
 	// 좌상단 미니달력
       flatpickr(dateInput, {
@@ -229,10 +253,41 @@
 		onChange: handleDateChange, // 날짜 선택 이벤트 핸들러 등록
 	});
       
-      
-      
     });
   </script>
+  
+  <!-- ajax -->
+    <script>
+		function insertPlan() {
+			// 폼에서 데이터 가져오기
+		    var title = $('#title').val();
+		    var startDate = $('#startDate').val();
+		    var endDate = $('#endDate').val();
+		    var startTime = $('#startTime').val();
+		    var endTime = $('#endTime').val();
+		    var content = $('#content').val();
+		    var place = $('#place').val();
+		    
+			$.ajax({
+				type:"post",
+				url: "insert",
+				data: {
+					title: title,
+					startDate: startDate,
+					endDate: endDate,
+					startTime: startTime,
+					endTime: endTime,
+					content: content,
+					place: place
+				},
+				success: function (response) {
+					console.log(response);
+				},
+				error: function (error) {
+		            console.error('ajax 실패실패실패 :', error);
+		        }
+			})
+		};
+	</script>
 </body>
-
 </html>
