@@ -1,6 +1,7 @@
 @charset "UTF-8";
+/*년도와 월*/
 .flatpickr-current-month .flatpickr-monthDropdown-months {
-    appearance: menulist-button;
+    appearance: menulist;
     background: transparent;
     border: none;
     border-radius: 0;
@@ -13,7 +14,7 @@
     font-weight: 300;
     height: auto;
     line-height: inherit;
-    margin: -1px 0 0 0;
+    margin: 2px 0 0 0;
     outline: none;
     padding: 0 0 0 0.5ch;
     position: relative;
@@ -24,14 +25,15 @@
     width: auto;
 }
 
+/*이전 이후 화살표*/
 .flatpickr-months .flatpickr-prev-month {
-	height: 20px;
+    height: 20px;
 }
-
 .flatpickr-months .flatpickr-next-month {
-	height: 20px;
+    height: 20px;
 }
 
+/*달력 날짜 네모칸*/
 .dayContainer {
     padding: 0;
     outline: 0;
