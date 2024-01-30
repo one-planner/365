@@ -1,0 +1,61 @@
+package com.planner.controller;
+
+import java.time.LocalDate;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.planner.domain.Planner;
+import com.planner.service.PlannerService;
+
+@Controller
+public class PlannerController {
+
+	@Autowired
+	PlannerService plannerService;
+	
+	//테스트폼
+	@GetMapping("testCalendarForm")
+	public String testCalendarForm() {
+		return "calendar/testCalendar";
+	}
+	//재호최폼
+	@GetMapping("choiForm")
+	public String choiForm() {
+		return "calendar/testCalendarBackup8ChoiForm";
+	}
+	
+//	@ResponseBody
+//	@GetMapping("/calendar/cinsert")
+//	public List<Map<String, Object>> calendarInsert(){
+//		return plannerService.calendarInsert();
+//	}
+	
+	// 일정추가폼
+	@PostMapping("insert")
+	@ResponseBody
+	public String insert(@RequestParam("title") String title,
+						 @RequestParam("startDate") LocalDate startDate,
+						 @RequestParam("endDate") LocalDate endDate,
+						 @RequestParam("startTime") String startTime,
+						 @RequestParam("endTime") LocalDate endTime,
+						 @RequestParam("content") String content,
+						 @RequestParam("place") String place,
+						 /* @RequestParam("content") String content */
+						 Planner planner) {
+		
+		planner.setTitle(title);
+		planner.setStartDate(startDate);
+		planner.setEndDate(endDate);
+		planner.setStartTime(startTime);
+		planner.setEndTime(place);
+		PlannerService.insert(planner);
+		return "success";
+	}
+	
+	
+}

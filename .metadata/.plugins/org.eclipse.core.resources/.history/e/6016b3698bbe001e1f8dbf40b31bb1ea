@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>OnePlanner</title>
+</head>
+<body>
+	<a href="mCalendarForm">시작하기</a> <br><br><br><br><br><br><br><br>
+	<a href="testCalendarForm">테스트 캘린더</a><br><br><br><br><br><br><br><br>
+	<a href="detailForm">디테일</a><br><br><br><br><br><br><br><br>
+	<a href="choiForm">재호최</a>
+	
+</body>
+</html>

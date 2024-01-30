@@ -1,0 +1,11 @@
+package com.planner.repository;
+
+import org.springframework.stereotype.Repository;
+
+import com.planner.domain.Planner;
+
+@Repository
+public interface PlannerRepository {
+
+
+}

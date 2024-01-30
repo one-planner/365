@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <style>
+
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+		  
+        var calendarEl1 = document.getElementById('calendar1');
+        var calendar1 = new FullCalendar.Calendar(calendarEl1, {
+          initialView: 'dayGridMonth',
+          fixedWeekCount : false,
+          height: 550,
+          dayMaxEvents: 3, // 한 셀에 나타날 최대 이벤트 개수
+          dayMaxEventRows: 3 // 한 셀에 나타날 최대 이벤트 행의 개수
+        });
+        calendar1.render();
+
+
+        var calendarEl2 = document.getElementById('calendar2');
+        var calendar2 = new FullCalendar.Calendar(calendarEl2, {
+          initialView: 'dayGridMonth',
+          fixedWeekCount : false
+        });
+        calendar2.render();
+      });
+    </script>
+  </head>
+  <body>
+    <!-- 달력을 담을 컨테이너 추가 -->
+    <div id='calendarContainer'>
+      <!-- 첫 번째 달력 (미니 달력) -->
+      <div id='calendar1' class='calendar'></div>
+      <!-- 두 번째 달력 (크게) -->
+      <div id='calendar2' class='calendar'></div>
+    </div>
+  </body>
+  
+  <script>
+	  
+  </script>
+  
+</html>

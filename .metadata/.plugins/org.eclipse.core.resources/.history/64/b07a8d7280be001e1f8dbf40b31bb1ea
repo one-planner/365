@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+  <script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+  <title>Insert title here</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .flexContainer {
+      display: flex;
+      padding-right: 0;
+      padding-left: 0;
+    }
+    #calendar {
+      width: 60%;
+    }
+    #calendarDetail {
+      width: 20%;
+      height: 800px;
+    }
+
+    #timeSelectionModal {
+      width: 400px;
+      /* 모달의 너비 조절 */
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!--flatpickr-->
+  <div class="flexContainer">
+    <div id="flatpickr-container" class="calendarFlat">
+      <input type="text" id="dateInput" placeholder="종료 날짜" style="display: none;">
+    </div>
+    <div id='calendar'></div>
+  </div>
+
+  <!--fullcalendar-->
+  <form id="eventForm" class="calendarFull">
+    <div align="center" id="calendarDetail">
+      <form action="">
+        <table>
+          <tr>
+            <td colspan="2">
+              <input type="text" class="form-control" placeholder="제목 및 시간 추가" onfocus="this.placeholder=''" onblur="this.placeholder='제목 및 시간 추가'" size="27px" id="event-name">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              시작일 : <input type="text" class="form-control" id="startDate" placeholder="시작 날짜"><br>
+              종료일 : <input type="text" class="form-control" id="endDate" placeholder="종료 날짜">
+            </td>
+          </tr>
+          <tr>
+            <td>날짜</td>
+          </tr>
+          <tr>
+            <td>
+              <select class="form-select" aria-label="Default select example" id="repeat-option">
+                <option value="1">반복안함</option>
+                <option value="2">매일</option>
+                <option value="3">매주</option>
+                <option value="4">평일</option>
+                <option value="5">주말</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <textarea name="" class="form-control" placeholder="설명 추가" onfocus="this.placeholder=''" onblur="this.placeholder='설명 추가'" cols="30" rows="10" id="event-memo"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right">
+              <button class="btn btn-primary" id="save-time">저장</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        fixedWeekCount: false,
+        editable: true,
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        selectable: true,
+        dateClick: function (info) {
+          $('#timeSelectionModal').modal('show');
+        }
+      });
+
+      calendar.render();
+
+      $('#save-time').click(function () {
+        var eventName = $('#event-name').val();
+        var startTime = $('#startDate').val();
+        var endTime = $('#endDate').val();
+        var eventMemo = $('#event-memo').val();
+        var repeatOption = $('#repeat-option').val();
+
+        if (eventName && startTime && endTime) {
+          calendar.addEvent({
+            title: eventName,
+            start: moment(startTime, 'YYYY-MM-DD'),
+            end: moment(endTime, 'YYYY-MM-DD'),
+            extendedProps: {
+              memo: eventMemo,
+              repeatOption: repeatOption
+            }
+          });
+
+          $('#eventForm')[0].reset(); // 폼 초기화
+          $('#timeSelectionModal').modal('hide');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

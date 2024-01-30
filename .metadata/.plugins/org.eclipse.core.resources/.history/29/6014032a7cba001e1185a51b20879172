@@ -1,0 +1,5 @@
+package com.planner.repository;
+
+public interface PlannerRepository {
+
+}

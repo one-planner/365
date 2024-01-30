@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/main.css">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/main.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+  <script src="/webjars/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+
+  <title>Insert title here</title>
+
+  <style>
+    .container {
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: flex-start;
+  	}
+    #calendar {
+      width: 60%;
+      height: 800px;
+      margin-right: 20px;
+      /* 우측 여백 추가 */
+      float: left;
+      /* 왼쪽 정렬 */
+    }
+
+    #flatpickr-container {
+      width: 45%;
+      /* 우측 여백 추가 */
+      float: left;
+      /* 왼쪽 정렬 */
+    }
+
+    #eventForm {
+      float: left;
+      /* 왼쪽 정렬 */
+    }
+
+    #timeSelectionModal {
+      width: 300px;
+      /* 모달의 너비 조절 */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #endDate {
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div id="flatpickr-container">
+      <div style="margin-top:50px;">
+        <input type="text" id="endDate" placeholder="종료 날짜" style="display: none;">
+      </div>
+    </div>
+
+    <div id='calendar'></div>
+  </div>
+
+  <form id="eventForm">
+    <!-- Bootstrap Modal for selecting start and end times -->
+    <div class="modal fade" id="timeSelectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- <label for="event-name">Event Name:</label>-->
+            <input type="text" id="event-name" class="form-control" placeholder="제목 및 시간 추가"
+              onfocus="this.placeholder=''" onblur="this.placeholder='제목 및 시간 추가'">
+            <label for="start-time">시작시간</label>
+            <input type="time" id="start-time" class="form-control">
+            <label for="end-time">종료시간</label>
+            <input type="time" id="end-time" class="form-control">
+            <label for="event-memo">설명추가</label>
+            <textarea id="event-memo" class="form-control" placeholder="설명 추가" onfocus="this.placeholder=''"
+              onblur="this.placeholder='설명 추가'"></textarea>
+            <!-- <label for="repeat-option">반복</label>-->
+            <br>
+            <select id="repeat-option" class="form-control" name="repeat-option">
+              <option value="">반복안함</option>
+              <option value="everyday">매일</option>
+              <option value="everyweek">매주</option>
+              <option value="everyweekday">주중</option>
+              <option value="everyweekend">주말</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" id="save-time">등록</button>
+            <button type="reset" class="btn btn-warning">초기화</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+      <div align="center" id="calendarDetail">
+        <form action="">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" placeholder="제목 및 시간 추가" onfocus="this.placeholder=''" onblur="this.placeholder='제목 및 시간 추가'">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="btn btn-primary">이벤트</button>&nbsp;
+                        <button class="btn btn-primary">할 일</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>날짜</td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="">
+                            <option value="">반복안함</option>
+                            <option value="">매일</option>
+                            <option value="">매주</option>
+                            <option value="">평일</option>
+                            <option value="">주말</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea name="" placeholder="설명 추가" onfocus="this.placeholder=''" onblur="this.placeholder='설명 추가'" cols="30" rows="10"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="">
+                            <option value="">내 할 일 목록</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+  
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth', // 처음 실행시 월별달력으로 실행
+        fixedWeekCount: false, // 달력 마지막주 까지만 출력되게
+        editable: true,
+
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+
+
+        selectable: true,
+        dateClick: function (info) {
+          // info 객체에 선택된 날짜의 정보가 담겨 있음
+          console.log(info);
+
+          // Bootstrap Modal을 띄워 시작 및 종료 시간, 이벤트 이름, 반복 옵션 등을 선택할 수 있는 UI를 보여줌
+          $('#timeSelectionModal').modal('show');
+        }
+      });
+
+      calendar.render();
+
+      // "Save" 버튼 클릭 시
+      $('#eventForm').submit(function (e) {
+        e.preventDefault();
+        var eventName = $('#event-name').val();
+        var startTime = $('#start-time').val();
+        var endTime = $('#end-time').val();
+        var eventMemo = $('#event-memo').val();
+        var repeatOption = $('#repeat-option').val();
+
+        console.log(eventName);
+        console.log(startTime);
+        console.log(endTime);
+
+        if (eventName) {
+          calendar.addEvent({
+            title: eventName,
+            start: moment(startTime, 'HH:mm'),
+            end: moment(endTime, 'HH:mm'),
+            extendedProps: {
+              memo: eventMemo,
+              repeatOption: repeatOption
+            }
+          });
+
+          //calendar.unselect(); // 선택 해제
+          $('#timeSelectionModal').modal('hide');
+        }
+      });
+
+      const endDateInput = document.getElementById('endDate');
+
+      function handleDateChange(selectedDates, dateStr, instance) {
+        console.log('선택된 날짜:', dateStr);
+        // 선택된 날짜를 fullcalendar에 전달
+        calendar.gotoDate(moment(dateStr).format('YYYY-MM-DD'));
+      }
+
+      flatpickr(endDateInput, {
+        inline: true,
+        dateFormat: 'Y-m-d',
+        enableTime: false,
+        minDate: 'today',
+        defaultDate: 'today',
+        locale: 'ko',
+        onChange: handleDateChange,
+        // 날짜 선택 이벤트 핸들러 등록
+      }).open();
+    });
+  </script>
+</body>
+
+</html>
